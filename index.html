@@ -1145,7 +1145,7 @@
       display: flex;
       flex-direction: column;
       gap: 2rem;
-      margin: 2rem 0 3.5rem 0;
+      margin: 2rem 0 0 0;
       -webkit-mask-image: linear-gradient(to right, transparent 0%, black 14%, black 86%, transparent 100%);
       mask-image: linear-gradient(to right, transparent 0%, black 14%, black 86%, transparent 100%);
     }
@@ -1632,6 +1632,45 @@
       font-size: 0.85rem;
       color: #CBD5E1;
       line-height: 1.55;
+    }
+
+    @media (max-width: 768px) {
+      .pillars-editorial-grid,
+      .prof-editorial-grid,
+      .team-family-grid {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        gap: 1rem;
+        padding-bottom: 0.75rem;
+        margin-left: -0.25rem;
+        margin-right: -0.25rem;
+        padding-left: 0.25rem;
+        padding-right: 0.25rem;
+      }
+
+      .pillars-editorial-grid::-webkit-scrollbar,
+      .prof-editorial-grid::-webkit-scrollbar,
+      .team-family-grid::-webkit-scrollbar {
+        display: none;
+      }
+
+      .pillars-editorial-grid > .pillar-editorial-card,
+      .prof-editorial-grid > .prof-editorial-card {
+        flex: 0 0 86%;
+        max-width: 86%;
+        scroll-snap-align: start;
+      }
+
+      .team-family-grid > .team-member-card {
+        flex: 0 0 82%;
+        max-width: 82%;
+        scroll-snap-align: start;
+      }
     }
 
     /* ==========================================================================
@@ -2184,7 +2223,9 @@
 
     .contact-architectural-grid {
       display: grid;
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0, 1fr);
+      width: 100%;
+      max-width: 100%;
       border-radius: 20px;
       overflow: hidden;
       border: 1px solid rgba(110, 193, 228, 0.22);
@@ -2194,11 +2235,14 @@
 
     @media (min-width: 992px) {
       .contact-architectural-grid {
-        grid-template-columns: 1.15fr 0.85fr;
+        grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
       }
     }
 
     .contact-text-column {
+      min-width: 0;
+      width: 100%;
+      max-width: 100%;
       padding: 2.25rem;
       background: var(--delgado-navy-card);
       display: flex;
@@ -2207,7 +2251,23 @@
       gap: 1.5rem;
     }
 
+    .contact-cards-subgrid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0.85rem;
+      width: 100%;
+    }
+
+    @media (min-width: 540px) {
+      .contact-cards-subgrid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
     .contact-hours-column {
+      min-width: 0;
+      width: 100%;
+      max-width: 100%;
       padding: 2.25rem;
       background: #040914;
       display: flex;
@@ -2258,6 +2318,13 @@
       .contact-text-column,
       .contact-hours-column {
         padding: 1.5rem 1.25rem;
+      }
+      .contact-text-column .btn-editorial {
+        white-space: normal;
+        text-align: center;
+        padding: 12px 16px;
+        width: 100%;
+        max-width: 100%;
       }
       .schedule-item {
         flex-direction: column;
@@ -2826,149 +2893,6 @@
               <span class="permiso-marquee-sep" aria-hidden="true">•</span>
             </a>
           </div>
-        </div>
-      </div>
-
-      <!-- Grid Completo de Cards de Permisos -->
-      <div class="container">
-        <div class="permisos-cards-grid">
-          <!-- 1. Permiso B -->
-          <article class="permiso-card reveal-on-scroll delay-1">
-            <div>
-              <div class="permiso-card-header">
-                <span class="permiso-badge-code">PERMISO B</span>
-                <span class="permiso-badge-tag">Coche</span>
-              </div>
-              <h3>Permiso B (Turismos)</h3>
-              <p>
-                Obtén tu carnet de coche en Torrent con una formación teórica amena, material actualizado y prácticas al volante de vehículos de última generación.
-              </p>
-              <ul class="permiso-specs-list">
-                <li><span class="dot">✓</span> Edad mínima: 18 años (teórico desde 3 meses antes)</li>
-                <li><span class="dot">✓</span> Flota: Volkswagen T-Roc, VW Golf y Peugeot</li>
-                <li><span class="dot">✓</span> Clases prácticas por Torrent y zonas de examen</li>
-              </ul>
-            </div>
-            <a href="https://wa.me/34639289695?text=%C2%A1Hola!%20He%20visto%20vuestra%20web%20y%20me%20gustar%C3%ADa%20verificar%20tarifas%2C%20horarios%20y%20matr%C3%ADcula%20para%20el%20Permiso%20B%20en%20Torrent." target="_blank" rel="noopener noreferrer" class="permiso-card-cta">
-              <span>Verificar Tarifas por WhatsApp</span>
-              <span aria-hidden="true">→</span>
-            </a>
-          </article>
-
-          <!-- 2. Permiso A2 -->
-          <article class="permiso-card is-moto reveal-on-scroll delay-2">
-            <div>
-              <div class="permiso-card-header">
-                <span class="permiso-badge-code">PERMISO A2</span>
-                <span class="permiso-badge-tag">Honda 500</span>
-              </div>
-              <h3>Permiso A2 (Motocicletas)</h3>
-              <p>
-                Conduce motocicletas de hasta 35 kW (47 CV) con total confianza. Realiza tus prácticas de maniobras y circulación sobre nuestra <strong>Honda CB500F</strong>.
-              </p>
-              <ul class="permiso-specs-list">
-                <li><span class="dot">✓</span> Edad mínima: 18 años</li>
-                <li><span class="dot">✓</span> Moto de prácticas: Honda 500 con defensas</li>
-                <li><span class="dot">✓</span> Preparación completa teórica y práctica para tu examen DGT</li>
-              </ul>
-            </div>
-            <a href="https://wa.me/34639289695?text=%C2%A1Hola!%20Estoy%20interesado%2Fa%20en%20sacarme%20el%20carnet%20de%20moto%20A2%20con%20vosotros.%20%C2%BFMe%20pod%C3%A9is%20informar%20sobre%20tarifas%20y%20disponibilidad%20de%20pr%C3%A1cticas%3F" target="_blank" rel="noopener noreferrer" class="permiso-card-cta">
-              <span>Verificar Tarifas por WhatsApp</span>
-              <span aria-hidden="true">→</span>
-            </a>
-          </article>
-
-          <!-- 3. Permiso A1 -->
-          <article class="permiso-card is-moto reveal-on-scroll delay-3">
-            <div>
-              <div class="permiso-card-header">
-                <span class="permiso-badge-code">PERMISO A1</span>
-                <span class="permiso-badge-tag">Honda 125</span>
-              </div>
-              <h3>Permiso A1 (Motos 125 cc)</h3>
-              <p>
-                El primer paso hacia la movilidad sobre dos ruedas desde los 16 años. Aprende con nuestra manejable <strong>Honda 125</strong> para motos de hasta 125 cc y 11 kW.
-              </p>
-              <ul class="permiso-specs-list">
-                <li><span class="dot">✓</span> Edad mínima: 16 años cumplidos</li>
-                <li><span class="dot">✓</span> Moto de prácticas: Honda 125</li>
-                <li><span class="dot">✓</span> Convalidación directa de la base para el A2</li>
-              </ul>
-            </div>
-            <a href="https://wa.me/34639289695?text=%C2%A1Hola!%20Estoy%20interesado%2Fa%20en%20sacarme%20el%20carnet%20de%20moto%20A1%20con%20vosotros.%20%C2%BFMe%20pod%C3%A9is%20informar%20sobre%20tarifas%20y%20disponibilidad%20de%20pr%C3%A1cticas%3F" target="_blank" rel="noopener noreferrer" class="permiso-card-cta">
-              <span>Verificar Tarifas por WhatsApp</span>
-              <span aria-hidden="true">→</span>
-            </a>
-          </article>
-
-          <!-- 4. Clases de Reciclaje -->
-          <article class="permiso-card reveal-on-scroll delay-1">
-            <div>
-              <div class="permiso-card-header">
-                <span class="permiso-badge-code">RECICLAJE</span>
-                <span class="permiso-badge-tag">Confianza Vial</span>
-              </div>
-              <h3>Clases de Reciclaje y Perfeccionamiento</h3>
-              <p>
-                ¿Ya tienes el permiso pero llevas tiempo sin conducir o sientes inseguridad en rotondas y aparcamientos? Recupera la soltura al volante sin presiones.
-              </p>
-              <ul class="permiso-specs-list">
-                <li><span class="dot">✓</span> Clases adaptadas a tu ritmo y nivel</li>
-                <li><span class="dot">✓</span> Enfoque paciente para superar el miedo a conducir</li>
-                <li><span class="dot">✓</span> Aparcamiento, autovía y circulación urbana</li>
-              </ul>
-            </div>
-            <a href="https://wa.me/34639289695?text=%C2%A1Hola!%20Ya%20tengo%20el%20carnet%20pero%20necesito%20dar%20clases%20pr%C3%A1cticas%20de%20reciclaje%20para%20ganar%20confianza%20al%20volante.%20%C2%BFC%C3%B3mo%20podemos%20organizarlo%3F" target="_blank" rel="noopener noreferrer" class="permiso-card-cta">
-              <span>Verificar por WhatsApp</span>
-              <span aria-hidden="true">→</span>
-            </a>
-          </article>
-
-          <!-- 5. Conducción Eficiente y Seguridad Vial -->
-          <article class="permiso-card reveal-on-scroll delay-2">
-            <div>
-              <div class="permiso-card-header">
-                <span class="permiso-badge-code">EFICIENCIA VIAL</span>
-                <span class="permiso-badge-tag">Ahorro y Seguridad</span>
-              </div>
-              <h3>Conducción Eficiente</h3>
-              <p>
-                Aprende con profesores certificados en Conducción Eficiente técnicas prácticas para circular con mayor seguridad, anticipación en tráfico urbano y menor consumo.
-              </p>
-              <ul class="permiso-specs-list">
-                <li><span class="dot">✓</span> Profesores titulados en Conducción Eficiente</li>
-                <li><span class="dot">✓</span> Técnicas aplicadas en tus clases prácticas</li>
-                <li><span class="dot">✓</span> Mayor fluidez, control y seguridad al volante</li>
-              </ul>
-            </div>
-            <a href="https://wa.me/34639289695?text=%C2%A1Hola!%20Me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20y%20verificar%20tarifas%20sobre%20conducci%C3%B3n%20eficiente%20y%20clases%20pr%C3%A1cticas." target="_blank" rel="noopener noreferrer" class="permiso-card-cta">
-              <span>Consultar por WhatsApp</span>
-              <span aria-hidden="true">→</span>
-            </a>
-          </article>
-
-          <!-- 6. Consulta de Notas DGT -->
-          <article class="permiso-card is-moto reveal-on-scroll delay-3">
-            <div>
-              <div class="permiso-card-header">
-                <span class="permiso-badge-code">PORTAL DGT</span>
-                <span class="permiso-badge-tag">Alumnos</span>
-              </div>
-              <h3>Resultados de Examen DGT</h3>
-              <p>
-                ¿Acabas de presentarte al examen teórico o práctico? Accede directamente al portal oficial de la Dirección General de Tráfico para comprobar tu calificación.
-              </p>
-              <ul class="permiso-specs-list">
-                <li><span class="dot">✓</span> Consulta oficial con NIF/NIE y fecha de examen</li>
-                <li><span class="dot">✓</span> Enlace directo a la sede electrónica de la DGT</li>
-                <li><span class="dot">✓</span> Apoyo administrativo de Lola e Inma para tu L</li>
-              </ul>
-            </div>
-            <a href="https://sedeclave.dgt.gob.es/WEB_NOTP_CONSULTA/consultaNota.faces" target="_blank" rel="noopener noreferrer" class="permiso-card-cta">
-              <span>Comprobar Resultado DGT</span>
-              <span aria-hidden="true">↗</span>
-            </a>
-          </article>
         </div>
       </div>
     </section>
@@ -3571,7 +3495,7 @@
                 Plaza San Jaime, 6, Bajo (Izda.) <span style="color:#94A3B8;">· 46900 Torrent, Valencia</span>
               </p>
 
-              <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(190px, 1fr)); gap:0.85rem;">
+              <div class="contact-cards-subgrid">
                 <div style="background:#071124; border:1px solid rgba(110,193,228,0.18); border-radius:12px; padding:0.85rem 1rem;">
                   <span style="font-family:var(--font-mono); font-size:0.66rem; color:var(--delgado-sky); font-weight:800; text-transform:uppercase; letter-spacing:0.08em; display:block; margin-bottom:0.3rem;">TELÉFONOS FIJOS</span>
                   <a href="tel:+34961567001" style="font-family:var(--font-display); font-size:1.05rem; font-weight:800; color:#FFFFFF; display:block;">961 56 70 01</a>
